@@ -34,22 +34,40 @@ passport.use(
       callbackURL: '/auth/google/callback',
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ googleID: profile.id }).then( function (existingUser) {
-        // existingUser is the { googleID: profile.id } returned
-        if (existingUser) {
-          // If we found, stop.
-          // null is the err, everything good
-          console.log('Welcome back!');
-          done(null, existingUser);
-        } else {
-          // If we can not find, let's create new one.
-          new User({ googleID: profile.id }).save()
-            .then(function (user) {
-              done(null, user);
-            });
-        }
-      });
+
+/** 
+ * [Refactoring with Async/Await]
+ * from this code:
+ * ---------
+ (accessToken, refreshToken, profile, done) => {
+   User.findOne({ googleID: profile.id }).then( function (existingUser) {
+     // existingUser is the { googleID: profile.id } returned
+     if (existingUser) {
+       // If we found, stop.
+       // null is the err, everything good
+       console.log('Welcome back!');
+       done(null, existingUser);
+     } else {
+       // If we can not find, let's create new one.
+       new User({ googleID: profile.id }).save()
+         .then(function (user) {
+           done(null, user);
+         });
+     }
+   });
+ }
+ * ----------
+ * to the below code:
+ */
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleID: profile.id }); // existingUser is the { googleID: profile.id } returned
+      
+      if (existingUser) {                 // If we found, stop.
+        return done(null, existingUser);  // null is the err, everything good
+      }
+      
+      const user = await new User({ googleID: profile.id }).save(); // If we can not find, let's create new one.
+      done(null, user);
     }
   )
 );

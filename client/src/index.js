@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/App.js';
+import reducers from './reducers';
 
 // Don't understand this shit T_T, it is called reducer.
-const store = createStore(() => [], {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware());
 
 ReactDOM.render(
   // We hook up the {store} into the App using Provider tag.

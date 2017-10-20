@@ -10,7 +10,7 @@ const Landing = () => <div className="container">Landing</div>;
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser; // Why it works??? in video fetchUser()
+    this.props.fetchUser(); // Why it works??? in video fetchUser() cause miss export
   }
 
   render() {

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Navbar extends Component {
   render() {
     return (
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul className="right hide-on-med-and-down">
         <li>
           <a className="waves-effect waves-light btn green flat z-depth-0">
             <i className="material-icons left">add</i>

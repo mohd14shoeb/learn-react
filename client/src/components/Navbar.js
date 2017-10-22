@@ -8,12 +8,6 @@ class Navbar extends Component {
         <li>
           <Payment />
         </li>
-        {/* <li>
-          <a className="waves-effect waves-light btn green flat z-depth-0">
-            <i className="material-icons left">add</i>
-            <small>Add Credit</small>
-          </a>
-        </li> */}
 
         <li>
           <a className="waves-effect waves-light btn grey darken-2 flat z-depth-0">

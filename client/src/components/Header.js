@@ -14,7 +14,7 @@ class Header extends Component {
       case null:
         return <Spinner />;
       default:
-        return <Navbar />;
+        return <Navbar nytCredits={this.props.auth.credits} />;
     }
   }
 

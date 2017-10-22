@@ -5,12 +5,12 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
-const Dashboard = () => <div className="container">Dashboard</div>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
+import Dashboard from './Dashboard';
+import SurveyNew from './SurveyNew';
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser(); // Why it works??? in video fetchUser() cause miss export
+    this.props.fetchUser();
   }
 
   render() {

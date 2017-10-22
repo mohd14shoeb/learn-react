@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
 const billingRoutes = require('./routes/billingRoutes');
@@ -27,6 +28,19 @@ app.use(passport.session());
 
 authRoutes(app);
 billingRoutes(app);
+
+/**
+ * Make more config to make Express behaves correctly with React.
+ */
+if (process.env.NODE_ENV === 'production') {
+  // Express will serve up production assets.
+  app.use(express.static('client/build'));
+
+  // Express will serve index.html if it does not see route.
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.set('port', process.env.PORT || 5000);
 

@@ -20,7 +20,7 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="blue-grey lighten-4 z-depth-0">
+      <nav className="blue-grey lighten-3 z-depth-0">
         <div className="nav-wrapper container">
           <Link to={this.props.auth ? '/surveys' : '/'} className="brand-logo">
             <i className="large material-icons left">email</i> Emaily

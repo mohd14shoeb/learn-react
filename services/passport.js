@@ -35,10 +35,6 @@ passport.use(
       proxy: true
     },
 
-    /** 
- * [Refactoring with Async/Await]
- * from this code:
- * ---------
  (accessToken, refreshToken, profile, done) => {
    User.findOne({ googleID: profile.id }).then( function (existingUser) {
      // existingUser is the { googleID: profile.id } returned
@@ -56,19 +52,17 @@ passport.use(
      }
    });
  }
- * ----------
- * to the below code:
- */
-    async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ googleID: profile.id }); // existingUser is the { googleID: profile.id } returned
 
-      if (existingUser) {
-        // If we found, stop.
-        return done(null, existingUser); // null is the err, everything good
-      }
-
-      const user = await new User({ googleID: profile.id }).save(); // If we can not find, let's create new one.
-      done(null, user);
-    }
+    // async (accessToken, refreshToken, profile, done) => {
+    //   const existingUser = await User.findOne({ googleID: profile.id }); // existingUser is the { googleID: profile.id } returned
+    // 
+    //   if (existingUser) {
+    //     // If we found, stop.
+    //     return done(null, existingUser); // null is the err, everything good
+    //   }
+    // 
+    //   const user = await new User({ googleID: profile.id }).save(); // If we can not find, let's create new one.
+    //   done(null, user);
+    // }
   )
 );

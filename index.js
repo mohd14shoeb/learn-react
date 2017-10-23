@@ -4,13 +4,12 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-const authRoutes = require('./routes/authRoutes');
-const billingRoutes = require('./routes/billingRoutes');
 const keys = require('./config/keys');
 
 require('./models/User.js'); // Model defined first
 require('./services/passport.js');
 
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 const app = express();
@@ -25,8 +24,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-authRoutes(app);
-billingRoutes(app);
+require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 /**
  * Make more config to make Express behaves correctly with React.

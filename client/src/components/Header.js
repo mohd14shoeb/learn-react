@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Spinner from './Spinner';
+// import Spinner from './Spinner';
 import Navbar from './Navbar';
 import Login from './Login';
 
@@ -12,7 +12,7 @@ class Header extends Component {
       case false:
         return <Login />;
       case null:
-        return <Spinner />;
+        return;
       default:
         return <Navbar nytCredits={this.props.auth.credits} />;
     }

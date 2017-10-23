@@ -7,12 +7,12 @@ const User = mongoose.model('users');
 /**
  * 
  */
-passport.serializeUser(function (user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id).then(function (user) {
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
     done(null, user);
   });
 });
@@ -35,7 +35,7 @@ passport.use(
       proxy: true
     },
 
-/** 
+    /** 
  * [Refactoring with Async/Await]
  * from this code:
  * ---------
@@ -61,11 +61,12 @@ passport.use(
  */
     async (accessToken, refreshToken, profile, done) => {
       const existingUser = await User.findOne({ googleID: profile.id }); // existingUser is the { googleID: profile.id } returned
-      
-      if (existingUser) {                 // If we found, stop.
-        return done(null, existingUser);  // null is the err, everything good
+
+      if (existingUser) {
+        // If we found, stop.
+        return done(null, existingUser); // null is the err, everything good
       }
-      
+
       const user = await new User({ googleID: profile.id }).save(); // If we can not find, let's create new one.
       done(null, user);
     }

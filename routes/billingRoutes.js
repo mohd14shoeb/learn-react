@@ -5,7 +5,7 @@ const requireLogin = require('../middlewares/requireLogin');
  * We have to make sure user already logged in before make the charge.
  */
 module.exports = app => {
-  app.post('/api/stripe', requireLogin, async (req, res) => {
+  app.post('/api/stripe', requireLogin, async function(req, res) {
     const charge = await stripe.charges.create({
       amount: 500,
       currency: 'usd',

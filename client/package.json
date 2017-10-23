@@ -10,6 +10,7 @@
       "target": "http://localhost:5000"
     }
   },
+  "homepage": "https://fierce-chamber-49157.herokuapp.com/",
   "dependencies": {
     "axios": "^0.16.2",
     "materialize-css": "^0.100.2",

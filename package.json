@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engine": {
-    "node": "8.*.*",
+    "node": "8.x.x",
     "npm": "5.4.0"
   },
   "scripts": {

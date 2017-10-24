@@ -2,6 +2,10 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node": "8.x.x",
+    "npm": "5.4.0"
+  },
   "proxy": {
     "/auth/google": {
       "target": "http://localhost:5000"
